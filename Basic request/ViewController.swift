@@ -21,8 +21,9 @@ class ViewController: UIViewController {
         
         //Создаем задачу на отправку нашего запроса.
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            print(String(decoding: data!, as: UTF8.self))
-            print(error)
+            if let data = data, let film = try? JSONDecoder().decode(Films.self, from: data) {
+                print(film.films[0])
+            }
         }
         task.resume()
     }
