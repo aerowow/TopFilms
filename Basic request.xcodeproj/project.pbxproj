@@ -13,6 +13,7 @@
 		B409AB72287C19A100CA9250 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B409AB71287C19A100CA9250 /* Assets.xcassets */; };
 		B409AB75287C19A100CA9250 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B409AB73287C19A100CA9250 /* LaunchScreen.storyboard */; };
 		B409AB7D287C210F00CA9250 /* Films.swift in Sources */ = {isa = PBXBuildFile; fileRef = B409AB7C287C210F00CA9250 /* Films.swift */; };
+		B41648DA287F097A002318F0 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41648D9287F097A002318F0 /* ApiService.swift */; };
 		B45676A0287C62E400F2D9ED /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B456769F287C62E400F2D9ED /* UIView+Ext.swift */; };
 		B45676A2287C6B1000F2D9ED /* CinemaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45676A1287C6B1000F2D9ED /* CinemaCell.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,7 @@
 		B409AB74287C19A100CA9250 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B409AB76287C19A100CA9250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B409AB7C287C210F00CA9250 /* Films.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Films.swift; sourceTree = "<group>"; };
+		B41648D9287F097A002318F0 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		B456769F287C62E400F2D9ED /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		B45676A1287C6B1000F2D9ED /* CinemaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				B409AB6C287C199F00CA9250 /* ListCinemaVC.swift */,
+				B41648D9287F097A002318F0 /* ApiService.swift */,
 				B45676A1287C6B1000F2D9ED /* CinemaCell.swift */,
 			);
 			path = Model;
@@ -156,6 +159,7 @@
 				B45676A2287C6B1000F2D9ED /* CinemaCell.swift in Sources */,
 				B45676A0287C62E400F2D9ED /* UIView+Ext.swift in Sources */,
 				B409AB69287C199F00CA9250 /* AppDelegate.swift in Sources */,
+				B41648DA287F097A002318F0 /* ApiService.swift in Sources */,
 				B409AB6B287C199F00CA9250 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

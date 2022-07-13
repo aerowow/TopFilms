@@ -52,4 +52,11 @@ class CinemaCell: UITableViewCell {
         videoImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         videoImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
     }
+    
+}
+
+extension UITableViewCell {
+    static func cellIdentifier() -> String {
+        return String(describing: self)
+    }
 }

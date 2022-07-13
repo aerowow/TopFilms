@@ -9,6 +9,7 @@ import UIKit
 
 class ListCinemaVC: UIViewController {
     
+    var apiService = ApiService()
     let tableView = UITableView()
     var films: [Film] = []
     
@@ -16,7 +17,9 @@ class ListCinemaVC: UIViewController {
         super.viewDidLoad()
         title = "Kinopoisk"
         configureTableView()
-        makeRequest()
+        apiService.getPopularMoviesData { (result) in
+            print(result)
+        }
     }
     
     func configureTableView() {
@@ -24,6 +27,7 @@ class ListCinemaVC: UIViewController {
         setTableViewDelegates()
         tableView.rowHeight = 100
         tableView.pin(to: view)
+        tableView.register(CinemaCell.self, forCellReuseIdentifier: CinemaCell.cellIdentifier())
     }
     
     func setTableViewDelegates() {
@@ -35,26 +39,6 @@ class ListCinemaVC: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
-    
-    private func makeRequest() {
-        var request = URLRequest(url: URL(string: "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1")!)
-        request.allHTTPHeaderFields = ["X-API-KEY" : "5259413b-9a44-4fd8-b938-da9d556e7724"]
-        request.httpMethod = "GET"
-
-        //Создаем задачу на отправку нашего запроса.
-        let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            if let data = data, let film = try? JSONDecoder().decode(Films.self, from: data) {
-                let filmNameRu = film.films[0].nameRu
-                print(filmNameRu)
-
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        }
-        task.resume()
-    }
-    
 }
 
 
@@ -69,14 +53,14 @@ extension ListCinemaVC: UITableViewDelegate, UITableViewDataSource {
     
     // indexPath - местоположение нашей ячейки. У него есть поля row(строка) и section(секция)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CinemaCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CinemaCell.cellIdentifier(), for: indexPath) as! CinemaCell
         
         let cinema = films[indexPath.row]
         
-        cell.textLabel?.text = cinema.nameRu
+        //        cell.textLabel?.text = cinema.nameRu
         cell.detailTextLabel?.text = cinema.nameEn
         cell.imageView?.image = #imageLiteral(resourceName: "swiftLogo.jpeg")
-//        cell.videoTitleLabel = cinema
+        cell.videoTitleLabel.text = cinema.nameRu
         
         return cell
     }
