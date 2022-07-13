@@ -17,13 +17,15 @@ class ApiService {
         
         guard let url = URL(string: popularMoviesURL) else { return }
         
-                url.allHTTPHeaderFields = ["X-API-KEY" : "5259413b-9a44-4fd8-b938-da9d556e7724"]
-                url.httpMethod = "GET"
+        var request = URLRequest(url: url)
+        
+                request.allHTTPHeaderFields = ["X-API-KEY" : "5259413b-9a44-4fd8-b938-da9d556e7724"]
+                request.httpMethod = "GET"
         
         
         // Create URL Session - work on the background
         
-        dataTask = URLSession.shared.dataTask(with: url) {(data, response, error) in
+        dataTask = URLSession.shared.dataTask(with: request) {(data, response, error) in
             
             // Handle error
             if let error = error {
