@@ -10,9 +10,11 @@ import UIKit
 class ListCinemaVC: UIViewController {
     
     let tableView = UITableView()
+    var films: [Film] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Kinopoisk"
         configureTableView()
         makeRequest()
     }
@@ -61,11 +63,22 @@ class ListCinemaVC: UIViewController {
 extension ListCinemaVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return films.count
     }
     
+    
+    // indexPath - местоположение нашей ячейки. У него есть поля row(строка) и section(секция)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CinemaCell
+        
+        let cinema = films[indexPath.row]
+        
+        cell.textLabel?.text = cinema.nameRu
+        cell.detailTextLabel?.text = cinema.nameEn
+        cell.imageView?.image = #imageLiteral(resourceName: "swiftLogo.jpeg")
+//        cell.videoTitleLabel = cinema
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -73,5 +86,3 @@ extension ListCinemaVC: UITableViewDelegate, UITableViewDataSource {
         print("Cell tapped")
     }
 }
-
-

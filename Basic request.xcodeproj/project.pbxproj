@@ -63,8 +63,8 @@
 				B409AB68287C199F00CA9250 /* AppDelegate.swift */,
 				B409AB6A287C199F00CA9250 /* SceneDelegate.swift */,
 				B456769F287C62E400F2D9ED /* UIView+Ext.swift */,
-				B456769E287C5EF100F2D9ED /* Model */,
 				B409AB7C287C210F00CA9250 /* Films.swift */,
+				B456769E287C5EF100F2D9ED /* Model */,
 				B409AB71287C19A100CA9250 /* Assets.xcassets */,
 				B409AB73287C19A100CA9250 /* LaunchScreen.storyboard */,
 				B409AB76287C19A100CA9250 /* Info.plist */,
@@ -298,6 +298,7 @@
 				DEVELOPMENT_TEAM = FWA38784WW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Basic request/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = CinemaProject;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -307,7 +308,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.daniilKiryanchuk.Basic-request";
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniilKiryanchuk.CinemaProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -325,6 +326,7 @@
 				DEVELOPMENT_TEAM = FWA38784WW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Basic request/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = CinemaProject;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -334,7 +336,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.daniilKiryanchuk.Basic-request";
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniilKiryanchuk.CinemaProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
