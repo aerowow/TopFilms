@@ -9,17 +9,13 @@ import UIKit
 
 class ListCinemaVC: UIViewController {
     
-    var apiService = ApiService()
     let tableView = UITableView()
-    var films: [Film] = []
+    var films: [Film] = [Film]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Kinopoisk"
         configureTableView()
-        apiService.getPopularMoviesData { (result) in
-            print(result)
-        }
     }
     
     func configureTableView() {
@@ -47,7 +43,10 @@ class ListCinemaVC: UIViewController {
 extension ListCinemaVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return films.count
+        if films.count != 0 {
+            return films.count
+        }
+        return 0
     }
     
     
@@ -55,12 +54,9 @@ extension ListCinemaVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CinemaCell.cellIdentifier(), for: indexPath) as! CinemaCell
         
-        let cinema = films[indexPath.row]
+        let film = films[indexPath.row]
         
-        //        cell.textLabel?.text = cinema.nameRu
-        cell.detailTextLabel?.text = cinema.nameEn
-        cell.imageView?.image = #imageLiteral(resourceName: "swiftLogo.jpeg")
-        cell.videoTitleLabel.text = cinema.nameRu
+        cell.textLabel?.text = film.nameEn
         
         return cell
     }

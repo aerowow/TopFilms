@@ -16,7 +16,6 @@ class ApiService {
         let popularMoviesURL = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1"
         
         guard let url = URL(string: popularMoviesURL) else { return }
-        
         var request = URLRequest(url: url)
         
                 request.allHTTPHeaderFields = ["X-API-KEY" : "5259413b-9a44-4fd8-b938-da9d556e7724"]
