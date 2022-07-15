@@ -9,6 +9,7 @@ import UIKit
 
 class ListCinemaVC: UIViewController {
     
+    var presenter: Presenter?
     let tableView = UITableView()
     var films: [Film] = [Film]()
     
@@ -16,25 +17,33 @@ class ListCinemaVC: UIViewController {
         super.viewDidLoad()
         title = "Kinopoisk"
         configureTableView()
+        
+        
     }
     
-    func configureTableView() {
-        view.addSubview(tableView)
-        setTableViewDelegates()
-        tableView.rowHeight = 100
-        tableView.pin(to: view)
-        tableView.register(CinemaCell.self, forCellReuseIdentifier: CinemaCell.cellIdentifier())
-    }
+    func giveMeData(films: [Film]) {
+        self.films = films
+        tableView.reloadData()
     
-    func setTableViewDelegates() {
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
-    }
+}
+
+func configureTableView() {
+    view.addSubview(tableView)
+    setTableViewDelegates()
+    tableView.rowHeight = 100
+    tableView.pin(to: view)
+    tableView.register(CinemaCell.self, forCellReuseIdentifier: CinemaCell.cellIdentifier())
+}
+
+func setTableViewDelegates() {
+    tableView.delegate = self
+    tableView.dataSource = self
+}
+
+override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    tableView.frame = view.bounds
+}
 }
 
 
@@ -57,6 +66,7 @@ extension ListCinemaVC: UITableViewDelegate, UITableViewDataSource {
         let film = films[indexPath.row]
         
         cell.textLabel?.text = film.nameEn
+        
         
         return cell
     }

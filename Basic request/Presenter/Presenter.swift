@@ -6,23 +6,28 @@
 //
 
 import Foundation
+import UIKit
 
-class MovieViewModel {
+class Presenter {
     
+    weak var viewController: ListCinemaVC?
     private var apiService = ApiService()
     private var popularFilms = [Film]()
     
-    func fetchPopularMoviesData(completion: @escaping () -> ()) {
+    
+    
+    func fetchPopularMoviesData() {
         
-        apiService.getPopularMoviesData { (result) in
+        apiService.getPopularMoviesData { [weak self] (result) in
             
             switch result {
             case .success(let listOf):
-                self.popularFilms = listOf.films
-                completion()
+                self?.viewController?.giveMeData(films: listOf.films)
             case .failure(let error):
                 print("Error processing json data: \(error)")
             }
         }
     }
+    
+    
 }

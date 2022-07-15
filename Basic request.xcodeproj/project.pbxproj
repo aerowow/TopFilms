@@ -14,7 +14,7 @@
 		B409AB75287C19A100CA9250 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B409AB73287C19A100CA9250 /* LaunchScreen.storyboard */; };
 		B409AB7D287C210F00CA9250 /* Films.swift in Sources */ = {isa = PBXBuildFile; fileRef = B409AB7C287C210F00CA9250 /* Films.swift */; };
 		B41648DA287F097A002318F0 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41648D9287F097A002318F0 /* ApiService.swift */; };
-		B41648DC287F224F002318F0 /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41648DB287F224F002318F0 /* MovieViewModel.swift */; };
+		B41648DC287F224F002318F0 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41648DB287F224F002318F0 /* Presenter.swift */; };
 		B45676A0287C62E400F2D9ED /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B456769F287C62E400F2D9ED /* UIView+Ext.swift */; };
 		B45676A2287C6B1000F2D9ED /* CinemaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45676A1287C6B1000F2D9ED /* CinemaCell.swift */; };
 /* End PBXBuildFile section */
@@ -29,7 +29,7 @@
 		B409AB76287C19A100CA9250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B409AB7C287C210F00CA9250 /* Films.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Films.swift; sourceTree = "<group>"; };
 		B41648D9287F097A002318F0 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
-		B41648DB287F224F002318F0 /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
+		B41648DB287F224F002318F0 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		B456769F287C62E400F2D9ED /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		B45676A1287C6B1000F2D9ED /* CinemaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,10 +66,9 @@
 			children = (
 				B409AB68287C199F00CA9250 /* AppDelegate.swift */,
 				B409AB6A287C199F00CA9250 /* SceneDelegate.swift */,
-				B456769F287C62E400F2D9ED /* UIView+Ext.swift */,
-				B409AB7C287C210F00CA9250 /* Films.swift */,
-				B41648DB287F224F002318F0 /* MovieViewModel.swift */,
+				B416492D288151CB002318F0 /* Presenter */,
 				B456769E287C5EF100F2D9ED /* Model */,
+				B416492C288151BE002318F0 /* View */,
 				B409AB71287C19A100CA9250 /* Assets.xcassets */,
 				B409AB73287C19A100CA9250 /* LaunchScreen.storyboard */,
 				B409AB76287C19A100CA9250 /* Info.plist */,
@@ -77,12 +76,29 @@
 			path = "Basic request";
 			sourceTree = "<group>";
 		};
+		B416492C288151BE002318F0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B456769F287C62E400F2D9ED /* UIView+Ext.swift */,
+				B45676A1287C6B1000F2D9ED /* CinemaCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B416492D288151CB002318F0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				B41648DB287F224F002318F0 /* Presenter.swift */,
+				B41648D9287F097A002318F0 /* ApiService.swift */,
+				B409AB6C287C199F00CA9250 /* ListCinemaVC.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		B456769E287C5EF100F2D9ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B409AB6C287C199F00CA9250 /* ListCinemaVC.swift */,
-				B41648D9287F097A002318F0 /* ApiService.swift */,
-				B45676A1287C6B1000F2D9ED /* CinemaCell.swift */,
+				B409AB7C287C210F00CA9250 /* Films.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -160,7 +176,7 @@
 				B409AB6D287C199F00CA9250 /* ListCinemaVC.swift in Sources */,
 				B409AB7D287C210F00CA9250 /* Films.swift in Sources */,
 				B45676A2287C6B1000F2D9ED /* CinemaCell.swift in Sources */,
-				B41648DC287F224F002318F0 /* MovieViewModel.swift in Sources */,
+				B41648DC287F224F002318F0 /* Presenter.swift in Sources */,
 				B45676A0287C62E400F2D9ED /* UIView+Ext.swift in Sources */,
 				B409AB69287C199F00CA9250 /* AppDelegate.swift in Sources */,
 				B41648DA287F097A002318F0 /* ApiService.swift in Sources */,
