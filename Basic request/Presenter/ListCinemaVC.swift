@@ -17,6 +17,7 @@ class ListCinemaVC: UIViewController {
         super.viewDidLoad()
         title = "Kinopoisk"
         configureTableView()
+        presenter?.fetchPopularMoviesData()
         
         
     }
