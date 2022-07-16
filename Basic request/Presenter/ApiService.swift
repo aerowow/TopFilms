@@ -51,6 +51,7 @@ class ApiService {
                 
                 DispatchQueue.main.async {
                     completion(.success(jsonData))
+                    
                 }
             } catch let error {
                 completion(.failure(error))

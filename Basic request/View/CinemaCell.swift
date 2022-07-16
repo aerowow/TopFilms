@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CinemaCell: UITableViewCell {
     
     var videoImageView = UIImageView()
     var videoTitleLabel = UILabel()
     private var urlString: String = ""
+
     
     // Setup movies values
     func setCellWithValuesOf (_ films: Film) {
@@ -70,7 +72,7 @@ class CinemaCell: UITableViewCell {
         
             // Before ew download the image we clear out the old one
         self.videoImageView.image = nil
-        getImageDataFrom(url: posterImageURL)
+        videoImageView.kf.setImage(with: URL(string: urlString), placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
 
     }
     
@@ -87,27 +89,25 @@ class CinemaCell: UITableViewCell {
                 print("Empty Data")
                 return
             }
-            DispatchQueue.main.async {
-                if let image = UIImage(data: data) {
-                    self.videoImageView.image = image
-                }
+            DispatchQueue.main.async() { [weak self] in
+                self?.imageView?.image = UIImage(data: data)
             }
         } .resume()
     }
     
     // MARK: - Convert date Format
-    func convertDateFormater(_ date: String?) -> String {
-        var fixDate = ""
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        if let originalDate = date {
-            if let newDate = dateFormatter.date(from: originalDate) {
-                dateFormatter.dateFormat = "dd.MM.yyyy"
-                fixDate = dateFormatter.string(from: newDate)
-            }
-        }
-        return fixDate
-    }
+//    func convertDateFormater(_ date: String?) -> String {
+//        var fixDate = ""
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        if let originalDate = date {
+//            if let newDate = dateFormatter.date(from: originalDate) {
+//                dateFormatter.dateFormat = "dd.MM.yyyy"
+//                fixDate = dateFormatter.string(from: newDate)
+//            }
+//        }
+//        return fixDate
+//    }
     
 }
 
