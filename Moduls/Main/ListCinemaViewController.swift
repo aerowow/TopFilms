@@ -7,9 +7,13 @@
 
 import UIKit
 
-class ListCinemaVC: UIViewController {
+protocol ListCinemaViewControllerProtocol: AnyObject {
+    func giveMeData(films: [Film])
+}
+
+class ListCinemaViewController: UIViewController, ListCinemaViewControllerProtocol {
     
-    var presenter: Presenter?
+    var presenter: ListCinemaPresenterProtocol?
     let tableView = UITableView()
     var films: [Film] = [Film]()
     
@@ -18,14 +22,11 @@ class ListCinemaVC: UIViewController {
         title = "Kinopoisk"
         configureTableView()
         presenter?.fetchPopularMoviesData()
-        
-        
     }
     
     func giveMeData(films: [Film]) {
         self.films = films
         tableView.reloadData()
-        
     }
     
     func configureTableView() {
@@ -47,10 +48,8 @@ class ListCinemaVC: UIViewController {
     }
 }
 
-
 // MARK: - UITableViewDelegate, UITableViewDataSource
-
-extension ListCinemaVC: UITableViewDelegate, UITableViewDataSource {
+extension ListCinemaViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if films.count != 0 {
@@ -59,20 +58,20 @@ extension ListCinemaVC: UITableViewDelegate, UITableViewDataSource {
         return 0
     }
     
-    
     // indexPath - местоположение нашей ячейки. У него есть поля row(строка) и section(секция)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CinemaCell.cellIdentifier(), for: indexPath) as! CinemaCell
         
         let film = films[indexPath.row]
-        cell.textLabel?.text = film.nameEn
+        cell.updateUI(nameRu: film.nameRu, posterURL: film.posterUrl)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("Cell tapped")
         
+        let detailViewController = DetailViewController()
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

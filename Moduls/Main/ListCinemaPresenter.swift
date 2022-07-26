@@ -8,17 +8,22 @@
 import Foundation
 import UIKit
 
-class Presenter {
+protocol ListCinemaPresenterProtocol {
+    func fetchPopularMoviesData()
+}
+
+class ListCinemaPresenter: ListCinemaPresenterProtocol  {
     
-    weak var viewController: ListCinemaVC?
-    private var apiService = ApiService()
+    weak var viewController: ListCinemaViewControllerProtocol?
+    private var apiService = NetworkManager()
     private var popularFilms = [Film]()
     
-    
+    init(viewController: ListCinemaViewControllerProtocol) {
+        self.viewController = viewController
+    }
     
     func fetchPopularMoviesData() {
-        
-        apiService.getPopularMoviesData { [weak self] (result) in
+        apiService.getPopularMoviesData { [weak self] result in
             
             switch result {
             case .success(let listOf):
