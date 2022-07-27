@@ -76,7 +76,7 @@ class CinemaCell: UITableViewCell {
             return
         }
         
-        // Before ew download the image we clear out the old one
+        // Before we download the image we clear out the old one
         self.videoImageView.image = nil
         videoImageView.kf.setImage(with: posterImageURL, placeholder: UIImage(named: "noImageAvailable"), options: [.transition(.fade(0.7))], progressBlock: nil)
         

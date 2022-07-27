@@ -27,7 +27,7 @@ class DetailViewPresenter: DetailPresenterProtocol {
             
             switch result {
             case .success(let film):
-                print(film)
+                print("0")
             case.failure(let error):
                 print("Error processing json data: \(error)")
             }

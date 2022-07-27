@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 protocol ListCinemaPresenterProtocol {
+    var popularFilms: [Film] { get set }
     func fetchPopularMoviesData()
 }
 
@@ -16,7 +17,7 @@ class ListCinemaPresenter: ListCinemaPresenterProtocol  {
     
     weak var viewController: ListCinemaViewControllerProtocol?
     private var apiService = NetworkManager()
-    private var popularFilms = [Film]()
+    var popularFilms = [Film]()
     
     init(viewController: ListCinemaViewControllerProtocol) {
         self.viewController = viewController
@@ -27,7 +28,8 @@ class ListCinemaPresenter: ListCinemaPresenterProtocol  {
             
             switch result {
             case .success(let listOf):
-                self?.viewController?.giveMeData(films: listOf.films)
+                self?.popularFilms = listOf.films
+                self?.viewController?.giveMeData()
             case .failure(let error):
                 print("Error processing json data: \(error)")
             }

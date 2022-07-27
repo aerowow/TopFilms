@@ -8,14 +8,17 @@
 import UIKit
 
 protocol ListCinemaViewControllerProtocol: AnyObject {
-    func giveMeData(films: [Film])
+    func giveMeData()
 }
 
 class ListCinemaViewController: UIViewController, ListCinemaViewControllerProtocol {
     
     var presenter: ListCinemaPresenterProtocol?
     let tableView = UITableView()
-    var films: [Film] = [Film]()
+    //    var films: [Film] = [Film]()
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +27,7 @@ class ListCinemaViewController: UIViewController, ListCinemaViewControllerProtoc
         presenter?.fetchPopularMoviesData()
     }
     
-    func giveMeData(films: [Film]) {
-        self.films = films
+    func giveMeData() {
         tableView.reloadData()
     }
     
@@ -51,18 +53,19 @@ class ListCinemaViewController: UIViewController, ListCinemaViewControllerProtoc
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ListCinemaViewController: UITableViewDelegate, UITableViewDataSource {
     
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if films.count != 0 {
-            return films.count
-        }
-        return 0
+        
+        guard let filmsCount = presenter?.popularFilms.count else { return 0 }
+        return filmsCount
     }
     
     // indexPath - местоположение нашей ячейки. У него есть поля row(строка) и section(секция)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CinemaCell.cellIdentifier(), for: indexPath) as! CinemaCell
         
-        let film = films[indexPath.row]
+        guard let film = presenter?.popularFilms[indexPath.row] else { return cell }
         cell.updateUI(nameRu: film.nameRu, posterURL: film.posterUrl)
         
         return cell
@@ -72,6 +75,11 @@ extension ListCinemaViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let detailViewController = DetailViewController()
+        let detailViewPresenter = DetailViewPresenter(viewController: detailViewController)
+        
+        detailViewController.presenter = detailViewPresenter
+        
+        print(presenter?.popularFilms[indexPath.row])
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

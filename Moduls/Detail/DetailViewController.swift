@@ -18,7 +18,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
 
     
     
-    
     // MARK: - Private UI Elements
     private let imageView = UIImageView()
     private let filmNameLabel = UILabel()
@@ -27,7 +26,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
     
     func getMoviesDescription(films: [Film]) {
         self.films = films
-        
     }
     
     // MARK: - Lifecycle
@@ -88,5 +86,20 @@ private extension DetailViewController {
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
     }
-    
+    //Update the UI Views
+    func updateUI(nameRu: String?, posterURL: String?, description: String?) {
+        self.filmNameLabel.text = nameRu
+
+        guard let posterImageURL = URL(string: posterURL ?? "") else {
+            self.imageView.image = UIImage(named: "noImageAvailable")
+            return
+        }
+
+        // Before we download the image we clear out the old one
+        self.imageView.image = nil
+        imageView.kf.setImage(with: posterImageURL, placeholder: UIImage(named: "noImageAvailable"), options: [.transition(.fade(0.7))], progressBlock: nil)
+
+    }
 }
+    
+
