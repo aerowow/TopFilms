@@ -8,13 +8,27 @@
 import UIKit
 
 protocol DetailViewControllerProtocol: AnyObject {
-    func getMoviesDescription(films: [Film])
+    func updateUI(model: Film)
 }
 
 class DetailViewController: UIViewController, DetailViewControllerProtocol {
     
+    func updateUI(model: Film) {
+        filmNameLabel.text = model.nameRu
+        descriptionLabel.text = model.description
+        
+        guard let posterImageURL = URL(string: model.posterUrl ?? "") else {
+            return imageView.image = UIImage(named: "noImageAvailable")
+        }
+        
+        imageView.kf.setImage(with: posterImageURL, placeholder: UIImage(named: "noImageAvailable"), options: [.transition(.fade(0.7))], progressBlock: nil)
+    }
+    
+    
     var presenter: DetailPresenterProtocol?
     var films: [Film] = [Film]()
+    
+    var hello = "hello"
 
     
     
@@ -24,17 +38,13 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
     private let descriptionLabel = UILabel()
     private var urlString: String = ""
     
-    func getMoviesDescription(films: [Film]) {
-        self.films = films
-    }
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupImageView()
         setupFilmNameLabel()
         setupDescription()
-        presenter?.fetchDescriptionFilm()
+        hello = "gay"
     }
 }
 
@@ -47,6 +57,7 @@ private extension DetailViewController {
         let image = UIImage(named: "noImageAvailable")
         imageView.image = image
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageView)

@@ -15,10 +15,6 @@ class ListCinemaViewController: UIViewController, ListCinemaViewControllerProtoc
     
     var presenter: ListCinemaPresenterProtocol?
     let tableView = UITableView()
-    //    var films: [Film] = [Film]()
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,30 +39,22 @@ class ListCinemaViewController: UIViewController, ListCinemaViewControllerProtoc
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
-    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ListCinemaViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let filmsCount = presenter?.popularFilms.count else { return 0 }
         return filmsCount
     }
-    
-    // indexPath - местоположение нашей ячейки. У него есть поля row(строка) и section(секция)
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CinemaCell.cellIdentifier(), for: indexPath) as! CinemaCell
         
         guard let film = presenter?.popularFilms[indexPath.row] else { return cell }
-        cell.updateUI(nameRu: film.nameRu, posterURL: film.posterUrl)
+        cell.updateUI(film: film)
         
         return cell
     }
@@ -78,8 +66,10 @@ extension ListCinemaViewController: UITableViewDelegate, UITableViewDataSource {
         let detailViewPresenter = DetailViewPresenter(viewController: detailViewController)
         
         detailViewController.presenter = detailViewPresenter
+
+        guard let film = presenter?.popularFilms[indexPath.row].filmId else { return }
+        detailViewPresenter.fetchDescriptionFilm(filmId: String(film))
         
-        print(presenter?.popularFilms[indexPath.row])
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

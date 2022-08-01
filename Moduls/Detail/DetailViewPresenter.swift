@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol DetailPresenterProtocol {
-    func fetchDescriptionFilm()
+    func fetchDescriptionFilm(filmId: String)
 }
 
 class DetailViewPresenter: DetailPresenterProtocol {
@@ -22,12 +22,12 @@ class DetailViewPresenter: DetailPresenterProtocol {
         self.viewController = viewController
     }
     
-    func fetchDescriptionFilm() {
-        apiService.getMoviesDescription(filmId: "301") { [weak self] result in
+    func fetchDescriptionFilm(filmId: String) {
+        apiService.getMoviesDescription(filmId: filmId) { [weak self] result in
             
             switch result {
             case .success(let film):
-                print("0")
+                self?.viewController?.updateUI(model: film)
             case.failure(let error):
                 print("Error processing json data: \(error)")
             }

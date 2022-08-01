@@ -13,18 +13,9 @@ class CinemaCell: UITableViewCell {
     var videoImageView = UIImageView()
     var videoTitleLabel = UILabel()
     private var urlString: String = ""
-    var films: [Film] = [Film]()
-
     
-    // Setup movies values
-    func setCellWithValuesOf (_ films: Film) {
-        updateUI(nameRu: films.nameRu, posterURL: films.posterUrl)
-    }
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        
         
         configureImageView()
         configureTitleLabel()
@@ -68,10 +59,11 @@ class CinemaCell: UITableViewCell {
     }
     
     //Update the UI Views
-    func updateUI(nameRu: String?, posterURL: String?) {
-        self.videoTitleLabel.text = nameRu
+    func updateUI(film: Film) {
         
-        guard let posterImageURL = URL(string: posterURL ?? "") else {
+        self.videoTitleLabel.text = film.nameRu
+        
+        guard let posterImageURL = URL(string: film.posterUrl ?? "") else {
             self.videoImageView.image = UIImage(named: "noImageAvailable")
             return
         }
