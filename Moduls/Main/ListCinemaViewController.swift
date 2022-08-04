@@ -30,7 +30,7 @@ class ListCinemaViewController: UIViewController, ListCinemaViewControllerProtoc
     func configureTableView() {
         view.addSubview(tableView)
         setTableViewDelegates()
-        tableView.rowHeight = 100
+        tableView.rowHeight = 130
         tableView.pin(to: view)
         tableView.register(CinemaCell.self, forCellReuseIdentifier: CinemaCell.cellIdentifier())
     }

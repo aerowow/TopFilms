@@ -24,14 +24,9 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         imageView.kf.setImage(with: posterImageURL, placeholder: UIImage(named: "noImageAvailable"), options: [.transition(.fade(0.7))], progressBlock: nil)
     }
     
-    
     var presenter: DetailPresenterProtocol?
     var films: [Film] = [Film]()
-    
-    var hello = "hello"
 
-    
-    
     // MARK: - Private UI Elements
     private let imageView = UIImageView()
     private let filmNameLabel = UILabel()
@@ -44,14 +39,11 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         setupImageView()
         setupFilmNameLabel()
         setupDescription()
-        hello = "gay"
     }
 }
 
 // MARK: - SetupUI Elements
 private extension DetailViewController {
-    
-    
     
     func setupImageView() {
         let image = UIImage(named: "noImageAvailable")
@@ -73,6 +65,7 @@ private extension DetailViewController {
     func setupFilmNameLabel() {
         filmNameLabel.text = "Film Name"
         filmNameLabel.font = .systemFont(ofSize: 35, weight: .bold)
+        filmNameLabel.adjustsFontSizeToFitWidth = true
         
         filmNameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(filmNameLabel)
@@ -109,8 +102,5 @@ private extension DetailViewController {
         // Before we download the image we clear out the old one
         self.imageView.image = nil
         imageView.kf.setImage(with: posterImageURL, placeholder: UIImage(named: "noImageAvailable"), options: [.transition(.fade(0.7))], progressBlock: nil)
-
     }
 }
-    
-
