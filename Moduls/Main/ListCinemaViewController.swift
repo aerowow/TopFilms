@@ -15,6 +15,7 @@ class ListCinemaViewController: UIViewController, ListCinemaViewControllerProtoc
     
     var presenter: ListCinemaPresenterProtocol?
     let tableView = UITableView()
+    var fetchingMore = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
