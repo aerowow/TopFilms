@@ -41,8 +41,8 @@ class ListCinemaViewController: UIViewController, ListCinemaViewControllerProtoc
     }
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
-extension ListCinemaViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate
+extension ListCinemaViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -72,4 +72,26 @@ extension ListCinemaViewController: UITableViewDelegate, UITableViewDataSource {
         
         navigationController?.pushViewController(detailViewController, animated: true)
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.height {
+            if !fetchingMore {
+                beginBatchFetch()
+            }
+        }
+    }
+    func beginBatchFetch() {
+        fetchingMore = true
+        print("beginBatchFetch")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 , execute: {
+            print(self.presenter?.popularFilms.count)
+            self.fetchingMore = false
+            self.tableView.reloadData()
+        })
+    }
 }
+

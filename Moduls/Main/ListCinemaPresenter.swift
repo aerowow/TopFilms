@@ -35,6 +35,4 @@ class ListCinemaPresenter: ListCinemaPresenterProtocol  {
             }
         }
     }
-    
-    
 }

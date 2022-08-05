@@ -120,8 +120,17 @@ class CinemaCell: UITableViewCell {
         
         nameRuTitleLabel.text = film.nameRu
         nameEnTitleLabel.text = "\(film.nameEn ?? "") (\(film.year ?? ""))"
-        ratingLabel.text = film.rating
         lengthLabel.text = film.filmLength
+        
+        let rating = film.rating
+        ratingLabel.text = rating
+        if Double(rating ?? "") ?? 0.0 > 7.0 {
+            ratingLabel.textColor = .green
+        } else if Double(rating ?? "") ?? 0.0 < 5.0 {
+            ratingLabel.textColor = .red
+        } else {
+            ratingLabel.textColor = .darkGray
+        }
         
         var element: [String] = []
         for genres in film.genres {
