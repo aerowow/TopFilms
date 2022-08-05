@@ -62,7 +62,7 @@ class NetworkManager {
     }
     
     // MARK: - getMoviesDescription
-    func getMoviesDescription(filmId: String, completion: @escaping (Result<Film, Error>) -> Void) {
+    func getMoviesDescription(filmId: String, completion: @escaping (Result<FilmDescription, Error>) -> Void) {
         
         let movieDescriptionURL = "https://kinopoiskapiunofficial.tech/api/v2.2/films/"
         let urlString = "\(movieDescriptionURL)\(filmId)"
@@ -78,13 +78,6 @@ class NetworkManager {
             completion(.failure(error))
             print(" DataTask Error: \(error.localizedDescription)")
         }
-            
-//        guard let response = response as? HTTPURLResponse else {
-//            // Handle empty Responce
-//            print("Empty Responce")
-//            return
-//        }
-//        print("Responce status code: \(response.statusCode)")
         
         guard let data = data else {
             // Handle Empty Data
@@ -94,7 +87,7 @@ class NetworkManager {
         do {
             // Parse the data
             let decoder = JSONDecoder()
-            let jsonData = try decoder.decode(Film.self, from: data)
+            let jsonData = try decoder.decode(FilmDescription.self, from: data)
             
             DispatchQueue.main.async {
                 completion(.success(jsonData))

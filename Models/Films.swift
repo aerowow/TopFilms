@@ -17,15 +17,15 @@ struct Film: Decodable {
     let nameRu: String?
     let nameEn: String?
     let year: String?
+    let filmLength: String?
     let genres: [Genre]
     let rating: String?
     let posterUrl: String?
     let kinopoiskId: Int?
     let description: String?
     let shortDescription: String?
-
     let countries: [Country]
-//    let filmLength: String?
+
 }
 
 struct Genre: Decodable {

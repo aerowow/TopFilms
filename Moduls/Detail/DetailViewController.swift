@@ -8,12 +8,12 @@
 import UIKit
 
 protocol DetailViewControllerProtocol: AnyObject {
-    func updateUI(model: Film)
+    func updateUI(model: FilmDescription)
 }
 
 class DetailViewController: UIViewController, DetailViewControllerProtocol {
     
-    func updateUI(model: Film) {
+    func updateUI(model: FilmDescription) {
         filmNameLabel.text = model.nameRu
         descriptionLabel.text = model.description
         
@@ -25,7 +25,7 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
     }
     
     var presenter: DetailPresenterProtocol?
-    var films: [Film] = [Film]()
+    
 
     // MARK: - Private UI Elements
     private let imageView = UIImageView()

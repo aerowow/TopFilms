@@ -19,13 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let listCinemaViewController = ListCinemaViewController()
-//        let detailViewConroller = DetailViewController()
         
         let listCinemaPresenter = ListCinemaPresenter(viewController: listCinemaViewController)
-//        let detailViewPresenter = DetailViewPresenter(viewController: detailViewConroller)
         
         listCinemaViewController.presenter = listCinemaPresenter
-//        detailViewConroller.presenter = detailViewPresenter
         
         
         let navController = UINavigationController(rootViewController: listCinemaViewController)

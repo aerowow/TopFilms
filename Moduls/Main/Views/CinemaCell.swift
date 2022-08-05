@@ -65,6 +65,10 @@ class CinemaCell: UITableViewCell {
         ratingLabel.font = .systemFont(ofSize: 20)
         ratingLabel.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
         
+        lengthLabel.font = .systemFont(ofSize: 15)
+        
+        countryLabel.font = .systemFont(ofSize: 15)
+        
     }
     
     func setTitleLabelConstraints() {
@@ -95,7 +99,18 @@ class CinemaCell: UITableViewCell {
         addSubview(ratingLabel)
         ratingLabel.translatesAutoresizingMaskIntoConstraints = false
         ratingLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
-        ratingLabel.leadingAnchor.constraint(equalTo: filmImageView.trailingAnchor, constant: 5).isActive = true
+        ratingLabel.leadingAnchor.constraint(equalTo: filmImageView.trailingAnchor, constant: 20).isActive = true
+        
+        addSubview(lengthLabel)
+        lengthLabel.translatesAutoresizingMaskIntoConstraints = false
+        lengthLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        lengthLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
+        
+        addSubview(countryLabel)
+        countryLabel.translatesAutoresizingMaskIntoConstraints = false
+        countryLabel.trailingAnchor.constraint(equalTo: lengthLabel.leadingAnchor, constant: -10).isActive = true
+        countryLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
+        
         
     }
     
@@ -106,22 +121,24 @@ class CinemaCell: UITableViewCell {
         nameRuTitleLabel.text = film.nameRu
         nameEnTitleLabel.text = "\(film.nameEn ?? "") (\(film.year ?? ""))"
         ratingLabel.text = film.rating
+        lengthLabel.text = film.filmLength
         
         var element: [String] = []
         for genres in film.genres {
             element.append(genres.genre ?? "")
         }
-        
         genreLabel.text = element.joined(separator: ", ")
         
-        
+        var countryElement: [String] = []
+        for countries in film.countries {
+            countryElement.append(countries.country ?? "")
+        }
+        countryLabel.text = countryElement.joined(separator: ", ")
         
         guard let posterImageURL = URL(string: film.posterUrl ?? "") else {
             filmImageView.image = UIImage(named: "noImageAvailable")
             return
         }
-    
-        
         // Before we download the image we clear out the old one
         filmImageView.image = nil
         filmImageView.kf.setImage(with: posterImageURL, placeholder: UIImage(named: "noImageAvailable"), options: [.transition(.fade(0.7))], progressBlock: nil)
