@@ -6,18 +6,18 @@
 //
 
 import Foundation
-import UIKit
+//import UIKit
 
 protocol ListCinemaPresenterProtocol {
     var popularFilms: [Film] { get set }
     func fetchPopularMoviesData()
 }
 
-class ListCinemaPresenter: ListCinemaPresenterProtocol  {
+class ListCinemaPresenter: ListCinemaPresenterProtocol {
     
     weak var viewController: ListCinemaViewControllerProtocol?
     private var apiService = NetworkManager()
-    var popularFilms = [Film]()
+    var popularFilms: [Film] = []
     
     init(viewController: ListCinemaViewControllerProtocol) {
         self.viewController = viewController

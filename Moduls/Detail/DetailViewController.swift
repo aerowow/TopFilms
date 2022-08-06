@@ -28,14 +28,16 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
     
 
     // MARK: - Private UI Elements
-    private let imageView = UIImageView()
-    private let filmNameLabel = UILabel()
+    private let imageView = UIImageView() //
+    private let filmNameLabel = UILabel() //
     private let descriptionLabel = UILabel()
     private var urlString: String = ""
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .black
+        
         setupImageView()
         setupFilmNameLabel()
         setupDescription()
@@ -48,7 +50,7 @@ private extension DetailViewController {
     func setupImageView() {
         let image = UIImage(named: "noImageAvailable")
         imageView.image = image
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFill //??
         imageView.clipsToBounds = true
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,7 +58,7 @@ private extension DetailViewController {
         
         NSLayoutConstraint.activate([
             imageView.heightAnchor.constraint(equalToConstant: 400),
-            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.topAnchor.constraint(equalTo: view.topAnchor), // safeArea....?
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
@@ -78,7 +80,7 @@ private extension DetailViewController {
     }
     
     func setupDescription() {
-        descriptionLabel.text = "We present an automatic framework for extracting, interpreting and generating linked data from tables. In the process of representing tables as linked data, we assign every column header a class label from an appropriate ontology, link table cells (if appropriate) to an entity from the Linked Open Data cloud and"
+        descriptionLabel.text = .none
         descriptionLabel.numberOfLines = 0
         
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -52,7 +52,6 @@ class NetworkManager {
                 
                 DispatchQueue.main.async {
                     completion(.success(jsonData))
-                    
                 }
             } catch let error {
                 completion(.failure(error))
@@ -62,9 +61,9 @@ class NetworkManager {
     }
     
     // MARK: - getMoviesDescription
-    func getMoviesDescription(filmId: String, completion: @escaping (Result<FilmDescription, Error>) -> Void) {
+    func getMoviesDescription(movieDescriptionURL: String, filmId: String, completion: @escaping (Result<FilmDescription, Error>) -> Void) {
         
-        let movieDescriptionURL = "https://kinopoiskapiunofficial.tech/api/v2.2/films/"
+        //let movieDescriptionURL = "https://kinopoiskapiunofficial.tech/api/v2.2/films/"
         let urlString = "\(movieDescriptionURL)\(filmId)"
         
         guard let url = URL(string: urlString) else { return }
@@ -74,30 +73,28 @@ class NetworkManager {
                 request.httpMethod = "GET"
         
         dataTask = URLSession.shared.dataTask(with: request) {(data, _, error) in
-        if let error = error {
-            completion(.failure(error))
-            print(" DataTask Error: \(error.localizedDescription)")
-        }
-        
-        guard let data = data else {
-            // Handle Empty Data
-            print("Empty Data")
-            return
-        }
-        do {
-            // Parse the data
-            let decoder = JSONDecoder()
-            let jsonData = try decoder.decode(FilmDescription.self, from: data)
-            
-            DispatchQueue.main.async {
-                completion(.success(jsonData))
-                
+            if let error = error {
+                completion(.failure(error))
+                print(" DataTask Error: \(error.localizedDescription)")
             }
-        } catch let error {
-            completion(.failure(error))
+            
+            guard let data = data else {
+                // Handle Empty Data
+                print("Empty Data")
+                return
+            }
+            do {
+                // Parse the data
+                let decoder = JSONDecoder()
+                let jsonData = try decoder.decode(FilmDescription.self, from: data)
+                
+                DispatchQueue.main.async {
+                    completion(.success(jsonData))
+                }
+            } catch let error {
+                completion(.failure(error))
+            }
         }
-    }
     dataTask?.resume()
     }
 }
-

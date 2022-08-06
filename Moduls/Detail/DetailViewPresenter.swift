@@ -23,7 +23,7 @@ class DetailViewPresenter: DetailPresenterProtocol {
     }
     
     func fetchDescriptionFilm(filmId: String) {
-        apiService.getMoviesDescription(filmId: filmId) { [weak self] result in
+        apiService.getMoviesDescription(movieDescriptionURL: "https://kinopoiskapiunofficial.tech/api/v2.2/films/", filmId: filmId) { [weak self] result in
             
             switch result {
             case .success(let film):

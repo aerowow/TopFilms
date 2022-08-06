@@ -8,16 +8,68 @@
 import UIKit
 import Kingfisher
 
-class CinemaCell: UITableViewCell {
+final class CinemaCell: UITableViewCell {
     
-    var filmImageView = UIImageView()
-    var nameRuTitleLabel = UILabel()
-    var nameEnTitleLabel = UILabel()
-    var yearLabel = UILabel()
-    var genreLabel = UILabel()
-    var ratingLabel = UILabel()
-    var countryLabel = UILabel()
-    var lengthLabel = UILabel()
+    private let filmImageView: UIImageView = {
+        let filmImageView = UIImageView()
+        filmImageView.layer.cornerRadius = 5
+        filmImageView.clipsToBounds = true
+        filmImageView.translatesAutoresizingMaskIntoConstraints = false
+       return filmImageView
+    }()
+    
+    private let nameRuTitleLabel: UILabel = {
+        let nameRuTitleLabel = UILabel()
+        nameRuTitleLabel.font = .boldSystemFont(ofSize: 18)
+        nameRuTitleLabel.adjustsFontSizeToFitWidth = true
+        nameRuTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        return nameRuTitleLabel
+    }()
+    
+    private let nameEnTitleLabel: UILabel = {
+        let nameEnTitleLabel = UILabel()
+        nameEnTitleLabel.font = .systemFont(ofSize: 15)
+        nameEnTitleLabel.numberOfLines = 2
+        nameEnTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        return nameEnTitleLabel
+    }()
+    
+    private let yearLabel: UILabel = {
+        let yearLabel = UILabel()
+        yearLabel.font = .systemFont(ofSize: 15)
+        yearLabel.translatesAutoresizingMaskIntoConstraints = false
+        return yearLabel
+    }()
+    
+    private let genreLabel: UILabel = {
+        let genreLabel = UILabel()
+        genreLabel.font = .systemFont(ofSize: 14)
+        genreLabel.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        genreLabel.translatesAutoresizingMaskIntoConstraints = false
+        return genreLabel
+    }()
+    
+    private let ratingLabel: UILabel = {
+        let ratingLabel = UILabel()
+        ratingLabel.font = .systemFont(ofSize: 20)
+        ratingLabel.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        ratingLabel.translatesAutoresizingMaskIntoConstraints = false
+        return ratingLabel
+    }()
+    
+    private let countryLabel: UILabel = {
+        let countryLabel = UILabel()
+        countryLabel.font = .systemFont(ofSize: 15)
+        countryLabel.translatesAutoresizingMaskIntoConstraints = false
+        return countryLabel
+    }()
+    
+    private let lengthLabel: UILabel = {
+        let lengthLabel = UILabel()
+        lengthLabel.font = .systemFont(ofSize: 15)
+        lengthLabel.translatesAutoresizingMaskIntoConstraints = false
+        return lengthLabel
+    }()
     
     
     private var urlString: String = ""
@@ -25,8 +77,7 @@ class CinemaCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        configureImageView()
-        configureTitleLabel()
+        addSubviews()
         setImageConstraints()
         setTitleLabelConstraints()
     }
@@ -36,81 +87,56 @@ class CinemaCell: UITableViewCell {
     }
     
     // MARK: - Configuring ImageView
-    func configureImageView() {
-        filmImageView.layer.cornerRadius = 5
-        filmImageView.clipsToBounds = true
+    
+    private func addSubviews() {
+        let views = [filmImageView,
+                     nameRuTitleLabel,
+                     nameEnTitleLabel,
+                     yearLabel,
+                     genreLabel,
+                     ratingLabel,
+                     lengthLabel,
+                     countryLabel]
+        contentView.addSubviews(views)
     }
     
-    func setImageConstraints() {
-        addSubview(filmImageView)
-        filmImageView.translatesAutoresizingMaskIntoConstraints = false
+   private func setImageConstraints() {
         filmImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         filmImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
         filmImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         filmImageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
     }
     // MARK: - Configuring Labels
-    func configureTitleLabel() {
-        nameRuTitleLabel.font = .boldSystemFont(ofSize: 18)
-        nameRuTitleLabel.adjustsFontSizeToFitWidth = true
-
-        nameEnTitleLabel.font = .systemFont(ofSize: 15)
-        nameEnTitleLabel.numberOfLines = 2
-        
-        yearLabel.font = .systemFont(ofSize: 15)
-        
-        genreLabel.font = .systemFont(ofSize: 14)
-        genreLabel.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        
-        ratingLabel.font = .systemFont(ofSize: 20)
-        ratingLabel.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        
-        lengthLabel.font = .systemFont(ofSize: 15)
-        
-        countryLabel.font = .systemFont(ofSize: 15)
-        
-    }
     
-    func setTitleLabelConstraints() {
-        addSubview(nameRuTitleLabel)
-        nameRuTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-//        nameEnTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+   private func setTitleLabelConstraints() { //сделать через массив
         nameRuTitleLabel.leadingAnchor.constraint(equalTo: filmImageView.trailingAnchor, constant: 20).isActive = true
         nameRuTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
         
-        addSubview(nameEnTitleLabel)
-        nameEnTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         nameEnTitleLabel.topAnchor.constraint(equalTo: nameRuTitleLabel.bottomAnchor, constant: 5).isActive = true
         nameEnTitleLabel.leadingAnchor.constraint(equalTo: filmImageView.trailingAnchor, constant: 20).isActive = true
         nameEnTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
         
-        addSubview(yearLabel)
-        yearLabel.translatesAutoresizingMaskIntoConstraints = false
         yearLabel.topAnchor.constraint(equalTo: nameRuTitleLabel.bottomAnchor, constant: 5).isActive = true
         yearLabel.leadingAnchor.constraint(equalTo: nameEnTitleLabel.trailingAnchor, constant: 2).isActive = true
-//        yearLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
         
-        addSubview(genreLabel)
-        genreLabel.translatesAutoresizingMaskIntoConstraints = false
         genreLabel.topAnchor.constraint(equalTo: nameEnTitleLabel.bottomAnchor, constant: 5).isActive = true
         genreLabel.leadingAnchor.constraint(equalTo: filmImageView.trailingAnchor, constant: 20).isActive = true
         genreLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
-        
-        addSubview(ratingLabel)
-        ratingLabel.translatesAutoresizingMaskIntoConstraints = false
+    
         ratingLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
         ratingLabel.leadingAnchor.constraint(equalTo: filmImageView.trailingAnchor, constant: 20).isActive = true
         
-        addSubview(lengthLabel)
-        lengthLabel.translatesAutoresizingMaskIntoConstraints = false
         lengthLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
         lengthLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
         
-        addSubview(countryLabel)
-        countryLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         countryLabel.trailingAnchor.constraint(equalTo: lengthLabel.leadingAnchor, constant: -10).isActive = true
         countryLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
-        
+        countryLabel.leadingAnchor.constraint(equalTo: ratingLabel.trailingAnchor, constant: 5).isActive = true
+        countryLabel.textAlignment = .right
+       
+        lengthLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        countryLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         
     }
     
@@ -119,25 +145,30 @@ class CinemaCell: UITableViewCell {
     func updateUI(film: Film) {
         
         nameRuTitleLabel.text = film.nameRu
-        nameEnTitleLabel.text = "\(film.nameEn ?? "") (\(film.year ?? ""))"
+        nameEnTitleLabel.text = "\(film.nameEn ?? "") (\(film.year ?? ""))" // логика в презеторе
         lengthLabel.text = film.filmLength
         
-        let rating = film.rating
-        ratingLabel.text = rating
-        if Double(rating ?? "") ?? 0.0 > 7.0 {
+        //let rating = film.rating
+        //ratingLabel.text = rating
+        ratingLabel.text = film.rating
+        
+        //чделать через switch case
+        if Double(ratingLabel.text ?? "") ?? 0.0 > 7.0 {
             ratingLabel.textColor = .green
-        } else if Double(rating ?? "") ?? 0.0 < 5.0 {
+        } else if Double(ratingLabel.text ?? "") ?? 0.0 < 5.0 {
             ratingLabel.textColor = .red
         } else {
             ratingLabel.textColor = .darkGray
         }
         
         var element: [String] = []
+        //обыграть это в presenter
         for genres in film.genres {
             element.append(genres.genre ?? "")
         }
         genreLabel.text = element.joined(separator: ", ")
         
+        //обыграть это в presenter
         var countryElement: [String] = []
         for countries in film.countries {
             countryElement.append(countries.country ?? "")

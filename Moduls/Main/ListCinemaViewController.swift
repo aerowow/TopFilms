@@ -11,7 +11,7 @@ protocol ListCinemaViewControllerProtocol: AnyObject {
     func giveMeData()
 }
 
-class ListCinemaViewController: UIViewController, ListCinemaViewControllerProtocol {
+final class ListCinemaViewController: UIViewController, ListCinemaViewControllerProtocol {
     
     var presenter: ListCinemaPresenterProtocol?
     let tableView = UITableView()
@@ -26,25 +26,25 @@ class ListCinemaViewController: UIViewController, ListCinemaViewControllerProtoc
     
     func giveMeData() {
         tableView.reloadData()
+            //reconfigure попробуй
     }
     
     func configureTableView() {
         view.addSubview(tableView)
         setTableViewDelegates()
-        tableView.rowHeight = 130
+        tableView.rowHeight = 130 //?
         tableView.pin(to: view)
         tableView.register(CinemaCell.self, forCellReuseIdentifier: CinemaCell.cellIdentifier())
     }
     
     func setTableViewDelegates() {
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.delegate = self //?
+        tableView.dataSource = self //?
     }
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate
-extension ListCinemaViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
-    
+// MARK: -  UITableViewDataSource
+extension ListCinemaViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let filmsCount = presenter?.popularFilms.count else { return 0 }
@@ -52,27 +52,34 @@ extension ListCinemaViewController: UITableViewDelegate, UITableViewDataSource, 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CinemaCell.cellIdentifier(), for: indexPath) as! CinemaCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CinemaCell.cellIdentifier(), for: indexPath) as? CinemaCell else { return UITableViewCell() }
         
         guard let film = presenter?.popularFilms[indexPath.row] else { return cell }
         cell.updateUI(film: film)
         
         return cell
     }
+}
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let detailViewController = DetailViewController()
-        let detailViewPresenter = DetailViewPresenter(viewController: detailViewController)
-        
-        detailViewController.presenter = detailViewPresenter
+// MARK: - UITableViewDelegate
+    extension ListCinemaViewController : UITableViewDelegate {
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+            let detailViewController = DetailViewController()
+            let detailViewPresenter = DetailViewPresenter(viewController: detailViewController)
+            
+            detailViewController.presenter = detailViewPresenter
 
-        guard let film = presenter?.popularFilms[indexPath.row].filmId else { return }
-        detailViewPresenter.fetchDescriptionFilm(filmId: String(film))
-        
-        navigationController?.pushViewController(detailViewController, animated: true)
+            guard let film = presenter?.popularFilms[indexPath.row].filmId else { return }
+            detailViewPresenter.fetchDescriptionFilm(filmId: String(film))
+            
+            navigationController?.pushViewController(detailViewController, animated: true)
+        }
     }
+
+// MARK: - UIScrollViewDelegate
+extension ListCinemaViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
@@ -89,10 +96,8 @@ extension ListCinemaViewController: UITableViewDelegate, UITableViewDataSource, 
         print("beginBatchFetch")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 , execute: {
-            print(self.presenter?.popularFilms.count)
             self.fetchingMore = false
             self.tableView.reloadData()
         })
     }
 }
-
