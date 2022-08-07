@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B409AB64287C199F00CA9250"
-               BuildableName = "Basic request.app"
+               BuildableName = "TopFilms.app"
                BlueprintName = "TopFilms"
                ReferencedContainer = "container:TopFilms.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B409AB64287C199F00CA9250"
-            BuildableName = "Basic request.app"
+            BuildableName = "TopFilms.app"
             BlueprintName = "TopFilms"
             ReferencedContainer = "container:TopFilms.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B409AB64287C199F00CA9250"
-            BuildableName = "Basic request.app"
+            BuildableName = "TopFilms.app"
             BlueprintName = "TopFilms"
             ReferencedContainer = "container:TopFilms.xcodeproj">
          </BuildableReference>

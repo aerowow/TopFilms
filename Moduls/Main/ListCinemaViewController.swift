@@ -18,7 +18,7 @@ final class ListCinemaViewController: UIViewController, ListCinemaViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Kinopoisk"
+        title = "Кинопоиск"
         configureTableView()
         presenter?.fetchPopularMoviesData()
     }
