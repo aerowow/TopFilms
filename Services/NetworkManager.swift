@@ -12,9 +12,9 @@ class NetworkManager {
     private var dataTask: URLSessionDataTask?
     
     // MARK: - getPopularMoviesData
-    func getPopularMoviesData(completion: @escaping (Result<Films, Error>) -> Void) {
+    func getPopularMoviesData(page: Int, completion: @escaping (Result<Films, Error>) -> Void) {
         
-        let popularMoviesURL = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1"
+        let popularMoviesURL = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=\(page)"
         
         guard let url = URL(string: popularMoviesURL) else { return }
         var request = URLRequest(url: url)
@@ -48,13 +48,15 @@ class NetworkManager {
             do {
                 // Parse the data
                 let decoder = JSONDecoder()
-                let jsonData = try decoder.decode(Films.self, from: data)
-                
+                let model = try decoder.decode(Films.self, from: data)
+
                 DispatchQueue.main.async {
-                    completion(.success(jsonData))
+                    completion(.success(model))
                 }
             } catch let error {
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
             }
         }
         dataTask?.resume()

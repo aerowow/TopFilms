@@ -26,8 +26,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         let navController = UINavigationController(rootViewController: listCinemaViewController)
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.backgroundColor = .clear
+        navController.navigationBar.scrollEdgeAppearance = navigationBarAppearance
         navController.navigationBar.prefersLargeTitles = true
-        navController.navigationBar.tintColor = .white
+//        navController.navigationBar.tintColor = .white
+//        navController.navigationBar.isTranslucent = false
+        navController.navigationBar.backgroundColor = .systemBackground
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene

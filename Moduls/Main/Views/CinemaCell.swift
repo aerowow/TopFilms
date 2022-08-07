@@ -44,7 +44,7 @@ final class CinemaCell: UITableViewCell {
     private let genreLabel: UILabel = {
         let genreLabel = UILabel()
         genreLabel.font = .systemFont(ofSize: 14)
-        genreLabel.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        genreLabel.textColor = .secondaryLabel
         genreLabel.translatesAutoresizingMaskIntoConstraints = false
         return genreLabel
     }()

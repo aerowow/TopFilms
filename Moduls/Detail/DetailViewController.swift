@@ -28,71 +28,92 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
     
 
     // MARK: - Private UI Elements
-    private let imageView = UIImageView() //
-    private let filmNameLabel = UILabel() //
-    private let descriptionLabel = UILabel()
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        let image = UIImage(named: "noImageAvailable")
+        imageView.image = image
+        imageView.contentMode = .scaleToFill
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private let filmNameLabel: UILabel =  {
+        let filmNameLabel = UILabel()
+        filmNameLabel.font = .systemFont(ofSize: 35, weight: .bold)
+        filmNameLabel.adjustsFontSizeToFitWidth = true
+        filmNameLabel.textColor = .label
+        filmNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        return filmNameLabel
+    }()
+    
+    private let descriptionLabel: UILabel = {
+        let descriptionLabel = UILabel()
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.font = .boldSystemFont(ofSize: 18)
+        descriptionLabel.textColor = .label
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        return descriptionLabel
+    }()
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.contentInsetAdjustmentBehavior = .never
+        return scrollView
+    }()
+    
     private var urlString: String = ""
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = .systemBackground
+        navigationItem.largeTitleDisplayMode = .never
         
-        setupImageView()
-        setupFilmNameLabel()
-        setupDescription()
+        addSubviews()
+        setupConstraints()
     }
 }
 
 // MARK: - SetupUI Elements
 private extension DetailViewController {
     
-    func setupImageView() {
-        let image = UIImage(named: "noImageAvailable")
-        imageView.image = image
-        imageView.contentMode = .scaleAspectFill //??
-        imageView.clipsToBounds = true
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(imageView)
-        
-        NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: 400),
-            imageView.topAnchor.constraint(equalTo: view.topAnchor), // safeArea....?
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+    private func addSubviews() {
+        view.addSubview(scrollView)
+        let views = [imageView, filmNameLabel, descriptionLabel]
+        scrollView.addSubviews(views)
     }
     
-    func setupFilmNameLabel() {
-        filmNameLabel.text = "Film Name"
-        filmNameLabel.font = .systemFont(ofSize: 35, weight: .bold)
-        filmNameLabel.adjustsFontSizeToFitWidth = true
-        
-        filmNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(filmNameLabel)
-        
+   private func setupConstraints() {
+       
         NSLayoutConstraint.activate([
+            
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            scrollView.contentLayoutGuide.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            scrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            scrollView.contentLayoutGuide.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
+            
+            imageView.heightAnchor.constraint(equalToConstant: 550),
+            imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            
             filmNameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
-            filmNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            filmNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-        ])
-    }
-    
-    func setupDescription() {
-        descriptionLabel.text = .none
-        descriptionLabel.numberOfLines = 0
-        
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(descriptionLabel)
-        
-        NSLayoutConstraint.activate([
+            filmNameLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            filmNameLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+            
             descriptionLabel.topAnchor.constraint(equalTo: filmNameLabel.bottomAnchor, constant: 30),
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            descriptionLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20)
         ])
     }
-    //Update the UI Views
+
     func updateUI(nameRu: String?, posterURL: String?, description: String?) {
         self.filmNameLabel.text = nameRu
 

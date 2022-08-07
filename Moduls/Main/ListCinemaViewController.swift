@@ -8,14 +8,13 @@
 import UIKit
 
 protocol ListCinemaViewControllerProtocol: AnyObject {
-    func giveMeData()
+    func reloadData()
 }
 
 final class ListCinemaViewController: UIViewController, ListCinemaViewControllerProtocol {
     
     var presenter: ListCinemaPresenterProtocol?
     let tableView = UITableView()
-    var fetchingMore = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,22 +23,17 @@ final class ListCinemaViewController: UIViewController, ListCinemaViewController
         presenter?.fetchPopularMoviesData()
     }
     
-    func giveMeData() {
+    func reloadData() {
         tableView.reloadData()
-            //reconfigure попробуй
     }
     
     func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
         view.addSubview(tableView)
-        setTableViewDelegates()
         tableView.rowHeight = 130 //?
         tableView.pin(to: view)
         tableView.register(CinemaCell.self, forCellReuseIdentifier: CinemaCell.cellIdentifier())
-    }
-    
-    func setTableViewDelegates() {
-        tableView.delegate = self //?
-        tableView.dataSource = self //?
     }
 }
 
@@ -50,7 +44,7 @@ extension ListCinemaViewController: UITableViewDataSource {
         guard let filmsCount = presenter?.popularFilms.count else { return 0 }
         return filmsCount
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CinemaCell.cellIdentifier(), for: indexPath) as? CinemaCell else { return UITableViewCell() }
         
@@ -60,23 +54,22 @@ extension ListCinemaViewController: UITableViewDataSource {
         return cell
     }
 }
-    
-// MARK: - UITableViewDelegate
-    extension ListCinemaViewController : UITableViewDelegate {
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            tableView.deselectRow(at: indexPath, animated: true)
-            
-            let detailViewController = DetailViewController()
-            let detailViewPresenter = DetailViewPresenter(viewController: detailViewController)
-            
-            detailViewController.presenter = detailViewPresenter
 
-            guard let film = presenter?.popularFilms[indexPath.row].filmId else { return }
-            detailViewPresenter.fetchDescriptionFilm(filmId: String(film))
-            
-            navigationController?.pushViewController(detailViewController, animated: true)
-        }
+// MARK: - UITableViewDelegate
+extension ListCinemaViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let detailViewController = DetailViewController()
+        let detailViewPresenter = DetailViewPresenter(viewController: detailViewController)
+        detailViewController.presenter = detailViewPresenter
+        
+        guard let film = presenter?.popularFilms[indexPath.row].filmId else { return }
+        detailViewPresenter.fetchDescriptionFilm(filmId: String(film))
+        
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
+}
 
 // MARK: - UIScrollViewDelegate
 extension ListCinemaViewController: UIScrollViewDelegate {
@@ -84,20 +77,14 @@ extension ListCinemaViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
-        
-        if offsetY > contentHeight - scrollView.frame.height {
-            if !fetchingMore {
-                beginBatchFetch()
-            }
+
+        guard let presenter = presenter else { return }
+        if offsetY > (contentHeight - scrollView.frame.height) && !presenter.isFetching  {
+            presenter.beginBatchFetch()
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 ) {
+//                            print("asyncAfter")
+//
+//                        }
         }
-    }
-    func beginBatchFetch() {
-        fetchingMore = true
-        print("beginBatchFetch")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0 , execute: {
-            self.fetchingMore = false
-            self.tableView.reloadData()
-        })
     }
 }
