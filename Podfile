@@ -1,11 +1,11 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'Basic request' do
+target 'TopFilms' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Basic request
+  # Pods for TopFilms
 pod 'Kingfisher', '~> 7.0'
 
 end

@@ -27,7 +27,7 @@
 		675ADA71CA78C8DB669E1520 /* Pods-Basic request.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic request.debug.xcconfig"; path = "Target Support Files/Pods-Basic request/Pods-Basic request.debug.xcconfig"; sourceTree = "<group>"; };
 		88E4FA446D52043A03C3E640 /* Pods_Basic_request.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basic_request.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE738FB64361ABA19D93244 /* Pods-Basic request.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic request.release.xcconfig"; path = "Target Support Files/Pods-Basic request/Pods-Basic request.release.xcconfig"; sourceTree = "<group>"; };
-		B409AB65287C199F00CA9250 /* Basic request.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basic request.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B409AB65287C199F00CA9250 /* TopFilms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopFilms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B409AB68287C199F00CA9250 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B409AB6A287C199F00CA9250 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B409AB6C287C199F00CA9250 /* ListCinemaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCinemaViewController.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 		B409AB66287C199F00CA9250 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B409AB65287C199F00CA9250 /* Basic request.app */,
+				B409AB65287C199F00CA9250 /* TopFilms.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,9 +171,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B409AB64287C199F00CA9250 /* Basic request */ = {
+		B409AB64287C199F00CA9250 /* TopFilms */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B409AB79287C19A100CA9250 /* Build configuration list for PBXNativeTarget "Basic request" */;
+			buildConfigurationList = B409AB79287C19A100CA9250 /* Build configuration list for PBXNativeTarget "TopFilms" */;
 			buildPhases = (
 				DA8B9821EC4B0614FD9462AF /* [CP] Check Pods Manifest.lock */,
 				B409AB61287C199F00CA9250 /* Sources */,
@@ -185,9 +185,9 @@
 			);
 			dependencies = (
 			);
-			name = "Basic request";
+			name = TopFilms;
 			productName = "Basic request";
-			productReference = B409AB65287C199F00CA9250 /* Basic request.app */;
+			productReference = B409AB65287C199F00CA9250 /* TopFilms.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -205,7 +205,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B409AB60287C199F00CA9250 /* Build configuration list for PBXProject "Basic request" */;
+			buildConfigurationList = B409AB60287C199F00CA9250 /* Build configuration list for PBXProject "TopFilms" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -218,7 +218,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B409AB64287C199F00CA9250 /* Basic request */,
+				B409AB64287C199F00CA9250 /* TopFilms */,
 			);
 		};
 /* End PBXProject section */
@@ -435,7 +435,7 @@
 				DEVELOPMENT_TEAM = FWA38784WW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SupportFiles/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CinemaProject;
+				INFOPLIST_KEY_CFBundleDisplayName = TopFilms;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -445,7 +445,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.daniilKiryanchuk.CinemaProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniilKiryanchuk.TopFilms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -464,7 +464,7 @@
 				DEVELOPMENT_TEAM = FWA38784WW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SupportFiles/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CinemaProject;
+				INFOPLIST_KEY_CFBundleDisplayName = TopFilms;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -474,7 +474,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.daniilKiryanchuk.CinemaProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniilKiryanchuk.TopFilms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -485,7 +485,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B409AB60287C199F00CA9250 /* Build configuration list for PBXProject "Basic request" */ = {
+		B409AB60287C199F00CA9250 /* Build configuration list for PBXProject "TopFilms" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B409AB77287C19A100CA9250 /* Debug */,
@@ -494,7 +494,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B409AB79287C19A100CA9250 /* Build configuration list for PBXNativeTarget "Basic request" */ = {
+		B409AB79287C19A100CA9250 /* Build configuration list for PBXNativeTarget "TopFilms" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B409AB7A287C19A100CA9250 /* Debug */,
