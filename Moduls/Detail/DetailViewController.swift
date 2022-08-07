@@ -50,7 +50,7 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
     private let descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.font = .boldSystemFont(ofSize: 18)
+        descriptionLabel.font = .systemFont(ofSize: 18)
         descriptionLabel.textColor = .label
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         return descriptionLabel
@@ -62,8 +62,6 @@ class DetailViewController: UIViewController, DetailViewControllerProtocol {
         scrollView.contentInsetAdjustmentBehavior = .never
         return scrollView
     }()
-    
-    private var urlString: String = ""
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -86,7 +84,7 @@ private extension DetailViewController {
     }
     
    private func setupConstraints() {
-       
+
         NSLayoutConstraint.activate([
             
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -116,7 +114,6 @@ private extension DetailViewController {
 
     func updateUI(nameRu: String?, posterURL: String?, description: String?) {
         self.filmNameLabel.text = nameRu
-
         guard let posterImageURL = URL(string: posterURL ?? "") else {
             self.imageView.image = UIImage(named: "noImageAvailable")
             return
