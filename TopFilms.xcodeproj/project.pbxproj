@@ -27,8 +27,6 @@
 		0E90712B9569DA11242E3AF2 /* Pods-TopFilms.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopFilms.debug.xcconfig"; path = "Target Support Files/Pods-TopFilms/Pods-TopFilms.debug.xcconfig"; sourceTree = "<group>"; };
 		10E7D74E474F9CC320F47B7C /* Pods_TopFilms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TopFilms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EE7802A3F11C3629E263ED /* Pods-TopFilms.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopFilms.release.xcconfig"; path = "Target Support Files/Pods-TopFilms/Pods-TopFilms.release.xcconfig"; sourceTree = "<group>"; };
-		675ADA71CA78C8DB669E1520 /* Pods-Basic request.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic request.debug.xcconfig"; path = "Target Support Files/Pods-Basic request/Pods-Basic request.debug.xcconfig"; sourceTree = "<group>"; };
-		8AE738FB64361ABA19D93244 /* Pods-Basic request.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic request.release.xcconfig"; path = "Target Support Files/Pods-Basic request/Pods-Basic request.release.xcconfig"; sourceTree = "<group>"; };
 		B409AB65287C199F00CA9250 /* TopFilms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopFilms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B409AB68287C199F00CA9250 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B409AB6A287C199F00CA9250 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,8 +67,6 @@
 		655857AA60E5A1667A2001DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				675ADA71CA78C8DB669E1520 /* Pods-Basic request.debug.xcconfig */,
-				8AE738FB64361ABA19D93244 /* Pods-Basic request.release.xcconfig */,
 				0E90712B9569DA11242E3AF2 /* Pods-TopFilms.debug.xcconfig */,
 				38EE7802A3F11C3629E263ED /* Pods-TopFilms.release.xcconfig */,
 			);
