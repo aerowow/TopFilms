@@ -19,7 +19,7 @@
 - UIKit
 - MVP
 - Cocoapods, Kingfisher
-- UrlSession [kinopoisk](https://kinopoiskapiunofficial.tech/)
+- URLSession [kinopoisk](https://kinopoiskapiunofficial.tech/)
 
 <br />
 <br />
